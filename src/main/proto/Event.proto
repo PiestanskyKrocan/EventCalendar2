@@ -1,0 +1,28 @@
+syntax = "proto3";
+import "User.proto";
+option java_multiple_files = true;
+
+message Event {
+  int32 event_id=1;
+  string name = 2;
+  string bodytext = 3;
+  string startTime = 4;
+  string endTime = 5;
+  string adrdess = 6;
+}
+
+service GRPCEventService {
+  rpc RPCserverSideStreamingGetListOfEvents(User) returns (stream Event) {}
+
+
+  rpc RPCfindEventById(Event) returns (Event);
+
+
+  rpc RPCsaveEvent(Event) returns (Event);
+
+
+  rpc RPCupdateEvent(Event) returns (Event);
+
+
+  rpc RPCdeleteEvent(Event) returns (Event);
+}

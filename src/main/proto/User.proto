@@ -1,0 +1,22 @@
+syntax = "proto3";
+option java_multiple_files = true;
+message User {
+  int32 user_id=1;
+  string name = 2;
+  string password = 3;
+  string gender = 4;
+  string date_of_birth = 5;
+  string adrdess = 6;
+}
+
+service GRPCUserService {
+
+  rpc RPCfindUserById(User) returns (User);
+
+  rpc RPCsaveUser(User) returns (User);
+
+  rpc RPCupdateUser(User) returns (User);
+
+  rpc RPCdeleteUser(User) returns (User);
+}
+

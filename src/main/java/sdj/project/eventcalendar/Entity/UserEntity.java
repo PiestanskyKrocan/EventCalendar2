@@ -3,7 +3,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class UserEntity {
 
     @Id
@@ -13,6 +13,9 @@ public class UserEntity {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "password")
+    private String password;
 
     @Column(name = "gender")
     private String gender;
@@ -25,9 +28,10 @@ public class UserEntity {
 
     public UserEntity(){}
 
-    public UserEntity(Long id, String name, String gender, Date dateOfBirth, String address) {
+    public UserEntity(Long id, String name,String password, String gender, Date dateOfBirth, String address) {
         this.id = id;
         this.name = name;
+        this.password=password;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
@@ -47,6 +51,14 @@ public class UserEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getGender() {
