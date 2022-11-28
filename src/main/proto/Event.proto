@@ -1,6 +1,7 @@
 syntax = "proto3";
 import "User.proto";
 option java_multiple_files = true;
+package sdj.project.eventcalendar.protobuf;
 
 message Event {
   int32 event_id=1;
@@ -8,11 +9,12 @@ message Event {
   string bodytext = 3;
   string startTime = 4;
   string endTime = 5;
-  string adrdess = 6;
+  string address = 6;
+  User user = 7;
 }
 
 service GRPCEventService {
-  rpc RPCserverSideStreamingGetListOfEvents(User) returns (stream Event) {}
+  rpc RPCserverSideStreamingGetListOfUserEvents(User) returns (stream Event) {}
 
 
   rpc RPCfindEventById(Event) returns (Event);

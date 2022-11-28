@@ -6,4 +6,6 @@ import sdj.project.eventcalendar.Entity.EventEntity;
 
 @Repository
 public interface EventRespiratory extends JpaRepository<EventEntity, Long> {
+
+
 }

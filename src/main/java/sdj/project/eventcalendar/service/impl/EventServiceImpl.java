@@ -1,5 +1,6 @@
 package sdj.project.eventcalendar.service.impl;
 
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import sdj.project.eventcalendar.Entity.EventEntity;
 import sdj.project.eventcalendar.respiratory.EventRespiratory;
@@ -24,18 +25,28 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Optional<EventEntity> findById(Long id) {
-        return eventRespiratory.findById(id);
+    public Optional<EventEntity> findById(Long id) throws ChangeSetPersister.NotFoundException {
+        Optional<EventEntity> eventOptional =  eventRespiratory.findById(id);
+        if (!eventOptional.isPresent()){
+
+            throw new ChangeSetPersister.NotFoundException();
+
+
+        }
+        return eventOptional;
+
     }
 
     @Override
     public EventEntity saveEvent(EventEntity eventEntity) {
-    return eventRespiratory.save(eventEntity);
+        EventEntity eventToBeUpdated = eventRespiratory.save(eventEntity);
+        return eventEntity;
     }
 
     @Override
     public EventEntity updateEvent(EventEntity eventEntity) {
-        return eventRespiratory.save(eventEntity);
+        EventEntity eventToBeUpdated = eventRespiratory.save(eventEntity);
+        return eventToBeUpdated;
     }
 
     @Override
