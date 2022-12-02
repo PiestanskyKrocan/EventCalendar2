@@ -29,10 +29,10 @@ public final class UserOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\nUser.proto\022\"sdj.project.eventcalendar." +
-      "protobuf\"o\n\004User\022\017\n\007user_id\030\001 \001(\005\022\014\n\004nam" +
+      "protobuf\"o\n\004User\022\017\n\007user_id\030\001 \001(\003\022\014\n\004nam" +
       "e\030\002 \001(\t\022\020\n\010password\030\003 \001(\t\022\016\n\006gender\030\004 \001(" +
       "\t\022\025\n\rdate_of_birth\030\005 \001(\t\022\017\n\007address\030\006 \001(" +
-      "\t2\245\003\n\017GRPCUserService\022e\n\017RPCfindUserById" +
+      "\t2\225\004\n\017GRPCUserService\022e\n\017RPCfindUserById" +
       "\022(.sdj.project.eventcalendar.protobuf.Us" +
       "er\032(.sdj.project.eventcalendar.protobuf." +
       "User\022a\n\013RPCsaveUser\022(.sdj.project.eventc" +
@@ -42,7 +42,10 @@ public final class UserOuterClass {
       "er\032(.sdj.project.eventcalendar.protobuf." +
       "User\022c\n\rRPCdeleteUser\022(.sdj.project.even" +
       "tcalendar.protobuf.User\032(.sdj.project.ev" +
-      "entcalendar.protobuf.UserB\002P\001b\006proto3"
+      "entcalendar.protobuf.User\022n\n\024RPCGetListO" +
+      "fAllUsers\022(.sdj.project.eventcalendar.pr" +
+      "otobuf.User\032(.sdj.project.eventcalendar." +
+      "protobuf.User\"\0000\001B\002P\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

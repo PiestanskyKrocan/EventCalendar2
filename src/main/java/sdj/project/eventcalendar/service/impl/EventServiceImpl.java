@@ -3,10 +3,12 @@ package sdj.project.eventcalendar.service.impl;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import sdj.project.eventcalendar.Entity.EventEntity;
+import sdj.project.eventcalendar.Entity.UserEntity;
 import sdj.project.eventcalendar.respiratory.EventRespiratory;
 import sdj.project.eventcalendar.service.EventService;
 
-import java.util.List;
+import java.util.ArrayList;
+
 import java.util.Optional;
 
 @Service
@@ -20,8 +22,13 @@ public class EventServiceImpl implements EventService {
 
 
     @Override
-    public List<EventEntity> findAllEvents() {
-        return eventRespiratory.findAll();
+    public ArrayList<UserEntity> findUsersByEventId(Long id) {
+        return eventRespiratory.findUsersByEventId(id);
+    }
+
+    @Override
+    public ArrayList<EventEntity> findAllEvents() {
+        return eventRespiratory.findAllEvents();
     }
 
     @Override

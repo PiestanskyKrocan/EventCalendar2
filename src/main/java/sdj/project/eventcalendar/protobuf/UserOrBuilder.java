@@ -8,10 +8,10 @@ public interface UserOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 user_id = 1;</code>
+   * <code>int64 user_id = 1;</code>
    * @return The userId.
    */
-  int getUserId();
+  long getUserId();
 
   /**
    * <code>string name = 2;</code>

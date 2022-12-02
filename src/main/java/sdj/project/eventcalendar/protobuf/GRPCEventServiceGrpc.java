@@ -14,35 +14,128 @@ public final class GRPCEventServiceGrpc {
   public static final String SERVICE_NAME = "sdj.project.eventcalendar.protobuf.GRPCEventService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User,
-      sdj.project.eventcalendar.protobuf.Event> getRPCserverSideStreamingGetListOfEventsMethod;
+  private static volatile io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.Event,
+      sdj.project.eventcalendar.protobuf.User> getRPCGetListOfUsersinEventMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "RPCserverSideStreamingGetListOfEvents",
+      fullMethodName = SERVICE_NAME + '/' + "RPCGetListOfUsersinEvent",
+      requestType = sdj.project.eventcalendar.protobuf.Event.class,
+      responseType = sdj.project.eventcalendar.protobuf.User.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.Event,
+      sdj.project.eventcalendar.protobuf.User> getRPCGetListOfUsersinEventMethod() {
+    io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.Event, sdj.project.eventcalendar.protobuf.User> getRPCGetListOfUsersinEventMethod;
+    if ((getRPCGetListOfUsersinEventMethod = GRPCEventServiceGrpc.getRPCGetListOfUsersinEventMethod) == null) {
+      synchronized (GRPCEventServiceGrpc.class) {
+        if ((getRPCGetListOfUsersinEventMethod = GRPCEventServiceGrpc.getRPCGetListOfUsersinEventMethod) == null) {
+          GRPCEventServiceGrpc.getRPCGetListOfUsersinEventMethod = getRPCGetListOfUsersinEventMethod =
+              io.grpc.MethodDescriptor.<sdj.project.eventcalendar.protobuf.Event, sdj.project.eventcalendar.protobuf.User>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RPCGetListOfUsersinEvent"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sdj.project.eventcalendar.protobuf.Event.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sdj.project.eventcalendar.protobuf.User.getDefaultInstance()))
+              .setSchemaDescriptor(new GRPCEventServiceMethodDescriptorSupplier("RPCGetListOfUsersinEvent"))
+              .build();
+        }
+      }
+    }
+    return getRPCGetListOfUsersinEventMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User,
+      sdj.project.eventcalendar.protobuf.Event> getRPCGetListofCreatedEventsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RPCGetListofCreatedEvents",
       requestType = sdj.project.eventcalendar.protobuf.User.class,
       responseType = sdj.project.eventcalendar.protobuf.Event.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
   public static io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User,
-      sdj.project.eventcalendar.protobuf.Event> getRPCserverSideStreamingGetListOfEventsMethod() {
-    io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User, sdj.project.eventcalendar.protobuf.Event> getRPCserverSideStreamingGetListOfEventsMethod;
-    if ((getRPCserverSideStreamingGetListOfEventsMethod = GRPCEventServiceGrpc.getRPCserverSideStreamingGetListOfEventsMethod) == null) {
+      sdj.project.eventcalendar.protobuf.Event> getRPCGetListofCreatedEventsMethod() {
+    io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User, sdj.project.eventcalendar.protobuf.Event> getRPCGetListofCreatedEventsMethod;
+    if ((getRPCGetListofCreatedEventsMethod = GRPCEventServiceGrpc.getRPCGetListofCreatedEventsMethod) == null) {
       synchronized (GRPCEventServiceGrpc.class) {
-        if ((getRPCserverSideStreamingGetListOfEventsMethod = GRPCEventServiceGrpc.getRPCserverSideStreamingGetListOfEventsMethod) == null) {
-          GRPCEventServiceGrpc.getRPCserverSideStreamingGetListOfEventsMethod = getRPCserverSideStreamingGetListOfEventsMethod =
+        if ((getRPCGetListofCreatedEventsMethod = GRPCEventServiceGrpc.getRPCGetListofCreatedEventsMethod) == null) {
+          GRPCEventServiceGrpc.getRPCGetListofCreatedEventsMethod = getRPCGetListofCreatedEventsMethod =
               io.grpc.MethodDescriptor.<sdj.project.eventcalendar.protobuf.User, sdj.project.eventcalendar.protobuf.Event>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RPCserverSideStreamingGetListOfEvents"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RPCGetListofCreatedEvents"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   sdj.project.eventcalendar.protobuf.User.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   sdj.project.eventcalendar.protobuf.Event.getDefaultInstance()))
-              .setSchemaDescriptor(new GRPCEventServiceMethodDescriptorSupplier("RPCserverSideStreamingGetListOfEvents"))
+              .setSchemaDescriptor(new GRPCEventServiceMethodDescriptorSupplier("RPCGetListofCreatedEvents"))
               .build();
         }
       }
     }
-    return getRPCserverSideStreamingGetListOfEventsMethod;
+    return getRPCGetListofCreatedEventsMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User,
+      sdj.project.eventcalendar.protobuf.Event> getRPCGetListOfJoinedEventsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RPCGetListOfJoinedEvents",
+      requestType = sdj.project.eventcalendar.protobuf.User.class,
+      responseType = sdj.project.eventcalendar.protobuf.Event.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User,
+      sdj.project.eventcalendar.protobuf.Event> getRPCGetListOfJoinedEventsMethod() {
+    io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User, sdj.project.eventcalendar.protobuf.Event> getRPCGetListOfJoinedEventsMethod;
+    if ((getRPCGetListOfJoinedEventsMethod = GRPCEventServiceGrpc.getRPCGetListOfJoinedEventsMethod) == null) {
+      synchronized (GRPCEventServiceGrpc.class) {
+        if ((getRPCGetListOfJoinedEventsMethod = GRPCEventServiceGrpc.getRPCGetListOfJoinedEventsMethod) == null) {
+          GRPCEventServiceGrpc.getRPCGetListOfJoinedEventsMethod = getRPCGetListOfJoinedEventsMethod =
+              io.grpc.MethodDescriptor.<sdj.project.eventcalendar.protobuf.User, sdj.project.eventcalendar.protobuf.Event>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RPCGetListOfJoinedEvents"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sdj.project.eventcalendar.protobuf.User.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sdj.project.eventcalendar.protobuf.Event.getDefaultInstance()))
+              .setSchemaDescriptor(new GRPCEventServiceMethodDescriptorSupplier("RPCGetListOfJoinedEvents"))
+              .build();
+        }
+      }
+    }
+    return getRPCGetListOfJoinedEventsMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User,
+      sdj.project.eventcalendar.protobuf.Event> getRPCGetListOfEventsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RPCGetListOfEvents",
+      requestType = sdj.project.eventcalendar.protobuf.User.class,
+      responseType = sdj.project.eventcalendar.protobuf.Event.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User,
+      sdj.project.eventcalendar.protobuf.Event> getRPCGetListOfEventsMethod() {
+    io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User, sdj.project.eventcalendar.protobuf.Event> getRPCGetListOfEventsMethod;
+    if ((getRPCGetListOfEventsMethod = GRPCEventServiceGrpc.getRPCGetListOfEventsMethod) == null) {
+      synchronized (GRPCEventServiceGrpc.class) {
+        if ((getRPCGetListOfEventsMethod = GRPCEventServiceGrpc.getRPCGetListOfEventsMethod) == null) {
+          GRPCEventServiceGrpc.getRPCGetListOfEventsMethod = getRPCGetListOfEventsMethod =
+              io.grpc.MethodDescriptor.<sdj.project.eventcalendar.protobuf.User, sdj.project.eventcalendar.protobuf.Event>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RPCGetListOfEvents"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sdj.project.eventcalendar.protobuf.User.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sdj.project.eventcalendar.protobuf.Event.getDefaultInstance()))
+              .setSchemaDescriptor(new GRPCEventServiceMethodDescriptorSupplier("RPCGetListOfEvents"))
+              .build();
+        }
+      }
+    }
+    return getRPCGetListOfEventsMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.Event,
@@ -219,9 +312,30 @@ public final class GRPCEventServiceGrpc {
 
     /**
      */
-    public void rPCserverSideStreamingGetListOfEvents(sdj.project.eventcalendar.protobuf.User request,
+    public void rPCGetListOfUsersinEvent(sdj.project.eventcalendar.protobuf.Event request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.User> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRPCGetListOfUsersinEventMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void rPCGetListofCreatedEvents(sdj.project.eventcalendar.protobuf.User request,
         io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Event> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRPCserverSideStreamingGetListOfEventsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRPCGetListofCreatedEventsMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void rPCGetListOfJoinedEvents(sdj.project.eventcalendar.protobuf.User request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Event> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRPCGetListOfJoinedEventsMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void rPCGetListOfEvents(sdj.project.eventcalendar.protobuf.User request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Event> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRPCGetListOfEventsMethod(), responseObserver);
     }
 
     /**
@@ -255,12 +369,33 @@ public final class GRPCEventServiceGrpc {
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getRPCserverSideStreamingGetListOfEventsMethod(),
+            getRPCGetListOfUsersinEventMethod(),
+            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+              new MethodHandlers<
+                sdj.project.eventcalendar.protobuf.Event,
+                sdj.project.eventcalendar.protobuf.User>(
+                  this, METHODID_RPCGET_LIST_OF_USERSIN_EVENT)))
+          .addMethod(
+            getRPCGetListofCreatedEventsMethod(),
             io.grpc.stub.ServerCalls.asyncServerStreamingCall(
               new MethodHandlers<
                 sdj.project.eventcalendar.protobuf.User,
                 sdj.project.eventcalendar.protobuf.Event>(
-                  this, METHODID_RPCSERVER_SIDE_STREAMING_GET_LIST_OF_EVENTS)))
+                  this, METHODID_RPCGET_LISTOF_CREATED_EVENTS)))
+          .addMethod(
+            getRPCGetListOfJoinedEventsMethod(),
+            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+              new MethodHandlers<
+                sdj.project.eventcalendar.protobuf.User,
+                sdj.project.eventcalendar.protobuf.Event>(
+                  this, METHODID_RPCGET_LIST_OF_JOINED_EVENTS)))
+          .addMethod(
+            getRPCGetListOfEventsMethod(),
+            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+              new MethodHandlers<
+                sdj.project.eventcalendar.protobuf.User,
+                sdj.project.eventcalendar.protobuf.Event>(
+                  this, METHODID_RPCGET_LIST_OF_EVENTS)))
           .addMethod(
             getRPCfindEventByIdMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -309,10 +444,34 @@ public final class GRPCEventServiceGrpc {
 
     /**
      */
-    public void rPCserverSideStreamingGetListOfEvents(sdj.project.eventcalendar.protobuf.User request,
+    public void rPCGetListOfUsersinEvent(sdj.project.eventcalendar.protobuf.Event request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.User> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
+          getChannel().newCall(getRPCGetListOfUsersinEventMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void rPCGetListofCreatedEvents(sdj.project.eventcalendar.protobuf.User request,
         io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Event> responseObserver) {
       io.grpc.stub.ClientCalls.asyncServerStreamingCall(
-          getChannel().newCall(getRPCserverSideStreamingGetListOfEventsMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRPCGetListofCreatedEventsMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void rPCGetListOfJoinedEvents(sdj.project.eventcalendar.protobuf.User request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Event> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
+          getChannel().newCall(getRPCGetListOfJoinedEventsMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void rPCGetListOfEvents(sdj.project.eventcalendar.protobuf.User request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Event> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
+          getChannel().newCall(getRPCGetListOfEventsMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -364,10 +523,34 @@ public final class GRPCEventServiceGrpc {
 
     /**
      */
-    public java.util.Iterator<sdj.project.eventcalendar.protobuf.Event> rPCserverSideStreamingGetListOfEvents(
+    public java.util.Iterator<sdj.project.eventcalendar.protobuf.User> rPCGetListOfUsersinEvent(
+        sdj.project.eventcalendar.protobuf.Event request) {
+      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
+          getChannel(), getRPCGetListOfUsersinEventMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public java.util.Iterator<sdj.project.eventcalendar.protobuf.Event> rPCGetListofCreatedEvents(
         sdj.project.eventcalendar.protobuf.User request) {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
-          getChannel(), getRPCserverSideStreamingGetListOfEventsMethod(), getCallOptions(), request);
+          getChannel(), getRPCGetListofCreatedEventsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public java.util.Iterator<sdj.project.eventcalendar.protobuf.Event> rPCGetListOfJoinedEvents(
+        sdj.project.eventcalendar.protobuf.User request) {
+      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
+          getChannel(), getRPCGetListOfJoinedEventsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public java.util.Iterator<sdj.project.eventcalendar.protobuf.Event> rPCGetListOfEvents(
+        sdj.project.eventcalendar.protobuf.User request) {
+      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
+          getChannel(), getRPCGetListOfEventsMethod(), getCallOptions(), request);
     }
 
     /**
@@ -446,11 +629,14 @@ public final class GRPCEventServiceGrpc {
     }
   }
 
-  private static final int METHODID_RPCSERVER_SIDE_STREAMING_GET_LIST_OF_EVENTS = 0;
-  private static final int METHODID_RPCFIND_EVENT_BY_ID = 1;
-  private static final int METHODID_RPCSAVE_EVENT = 2;
-  private static final int METHODID_RPCUPDATE_EVENT = 3;
-  private static final int METHODID_RPCDELETE_EVENT = 4;
+  private static final int METHODID_RPCGET_LIST_OF_USERSIN_EVENT = 0;
+  private static final int METHODID_RPCGET_LISTOF_CREATED_EVENTS = 1;
+  private static final int METHODID_RPCGET_LIST_OF_JOINED_EVENTS = 2;
+  private static final int METHODID_RPCGET_LIST_OF_EVENTS = 3;
+  private static final int METHODID_RPCFIND_EVENT_BY_ID = 4;
+  private static final int METHODID_RPCSAVE_EVENT = 5;
+  private static final int METHODID_RPCUPDATE_EVENT = 6;
+  private static final int METHODID_RPCDELETE_EVENT = 7;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -469,8 +655,20 @@ public final class GRPCEventServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_RPCSERVER_SIDE_STREAMING_GET_LIST_OF_EVENTS:
-          serviceImpl.rPCserverSideStreamingGetListOfEvents((sdj.project.eventcalendar.protobuf.User) request,
+        case METHODID_RPCGET_LIST_OF_USERSIN_EVENT:
+          serviceImpl.rPCGetListOfUsersinEvent((sdj.project.eventcalendar.protobuf.Event) request,
+              (io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.User>) responseObserver);
+          break;
+        case METHODID_RPCGET_LISTOF_CREATED_EVENTS:
+          serviceImpl.rPCGetListofCreatedEvents((sdj.project.eventcalendar.protobuf.User) request,
+              (io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Event>) responseObserver);
+          break;
+        case METHODID_RPCGET_LIST_OF_JOINED_EVENTS:
+          serviceImpl.rPCGetListOfJoinedEvents((sdj.project.eventcalendar.protobuf.User) request,
+              (io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Event>) responseObserver);
+          break;
+        case METHODID_RPCGET_LIST_OF_EVENTS:
+          serviceImpl.rPCGetListOfEvents((sdj.project.eventcalendar.protobuf.User) request,
               (io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Event>) responseObserver);
           break;
         case METHODID_RPCFIND_EVENT_BY_ID:
@@ -550,7 +748,10 @@ public final class GRPCEventServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new GRPCEventServiceFileDescriptorSupplier())
-              .addMethod(getRPCserverSideStreamingGetListOfEventsMethod())
+              .addMethod(getRPCGetListOfUsersinEventMethod())
+              .addMethod(getRPCGetListofCreatedEventsMethod())
+              .addMethod(getRPCGetListOfJoinedEventsMethod())
+              .addMethod(getRPCGetListOfEventsMethod())
               .addMethod(getRPCfindEventByIdMethod())
               .addMethod(getRPCsaveEventMethod())
               .addMethod(getRPCupdateEventMethod())

@@ -8,10 +8,10 @@ public interface EventOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 event_id = 1;</code>
+   * <code>int64 event_id = 1;</code>
    * @return The eventId.
    */
-  int getEventId();
+  long getEventId();
 
   /**
    * <code>string name = 2;</code>
@@ -72,4 +72,19 @@ public interface EventOrBuilder extends
    */
   com.google.protobuf.ByteString
       getAddressBytes();
+
+  /**
+   * <code>.sdj.project.eventcalendar.protobuf.User creator = 7;</code>
+   * @return Whether the creator field is set.
+   */
+  boolean hasCreator();
+  /**
+   * <code>.sdj.project.eventcalendar.protobuf.User creator = 7;</code>
+   * @return The creator.
+   */
+  sdj.project.eventcalendar.protobuf.User getCreator();
+  /**
+   * <code>.sdj.project.eventcalendar.protobuf.User creator = 7;</code>
+   */
+  sdj.project.eventcalendar.protobuf.UserOrBuilder getCreatorOrBuilder();
 }

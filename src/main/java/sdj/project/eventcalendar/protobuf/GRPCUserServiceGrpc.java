@@ -138,6 +138,37 @@ public final class GRPCUserServiceGrpc {
     return getRPCdeleteUserMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User,
+      sdj.project.eventcalendar.protobuf.User> getRPCGetListOfAllUsersMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RPCGetListOfAllUsers",
+      requestType = sdj.project.eventcalendar.protobuf.User.class,
+      responseType = sdj.project.eventcalendar.protobuf.User.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User,
+      sdj.project.eventcalendar.protobuf.User> getRPCGetListOfAllUsersMethod() {
+    io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User, sdj.project.eventcalendar.protobuf.User> getRPCGetListOfAllUsersMethod;
+    if ((getRPCGetListOfAllUsersMethod = GRPCUserServiceGrpc.getRPCGetListOfAllUsersMethod) == null) {
+      synchronized (GRPCUserServiceGrpc.class) {
+        if ((getRPCGetListOfAllUsersMethod = GRPCUserServiceGrpc.getRPCGetListOfAllUsersMethod) == null) {
+          GRPCUserServiceGrpc.getRPCGetListOfAllUsersMethod = getRPCGetListOfAllUsersMethod =
+              io.grpc.MethodDescriptor.<sdj.project.eventcalendar.protobuf.User, sdj.project.eventcalendar.protobuf.User>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RPCGetListOfAllUsers"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sdj.project.eventcalendar.protobuf.User.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sdj.project.eventcalendar.protobuf.User.getDefaultInstance()))
+              .setSchemaDescriptor(new GRPCUserServiceMethodDescriptorSupplier("RPCGetListOfAllUsers"))
+              .build();
+        }
+      }
+    }
+    return getRPCGetListOfAllUsersMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -214,6 +245,13 @@ public final class GRPCUserServiceGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRPCdeleteUserMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void rPCGetListOfAllUsers(sdj.project.eventcalendar.protobuf.User request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.User> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRPCGetListOfAllUsersMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -244,6 +282,13 @@ public final class GRPCUserServiceGrpc {
                 sdj.project.eventcalendar.protobuf.User,
                 sdj.project.eventcalendar.protobuf.User>(
                   this, METHODID_RPCDELETE_USER)))
+          .addMethod(
+            getRPCGetListOfAllUsersMethod(),
+            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+              new MethodHandlers<
+                sdj.project.eventcalendar.protobuf.User,
+                sdj.project.eventcalendar.protobuf.User>(
+                  this, METHODID_RPCGET_LIST_OF_ALL_USERS)))
           .build();
     }
   }
@@ -293,6 +338,14 @@ public final class GRPCUserServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getRPCdeleteUserMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void rPCGetListOfAllUsers(sdj.project.eventcalendar.protobuf.User request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.User> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
+          getChannel().newCall(getRPCGetListOfAllUsersMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -335,6 +388,14 @@ public final class GRPCUserServiceGrpc {
     public sdj.project.eventcalendar.protobuf.User rPCdeleteUser(sdj.project.eventcalendar.protobuf.User request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getRPCdeleteUserMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public java.util.Iterator<sdj.project.eventcalendar.protobuf.User> rPCGetListOfAllUsers(
+        sdj.project.eventcalendar.protobuf.User request) {
+      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
+          getChannel(), getRPCGetListOfAllUsersMethod(), getCallOptions(), request);
     }
   }
 
@@ -389,6 +450,7 @@ public final class GRPCUserServiceGrpc {
   private static final int METHODID_RPCSAVE_USER = 1;
   private static final int METHODID_RPCUPDATE_USER = 2;
   private static final int METHODID_RPCDELETE_USER = 3;
+  private static final int METHODID_RPCGET_LIST_OF_ALL_USERS = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -421,6 +483,10 @@ public final class GRPCUserServiceGrpc {
           break;
         case METHODID_RPCDELETE_USER:
           serviceImpl.rPCdeleteUser((sdj.project.eventcalendar.protobuf.User) request,
+              (io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.User>) responseObserver);
+          break;
+        case METHODID_RPCGET_LIST_OF_ALL_USERS:
+          serviceImpl.rPCGetListOfAllUsers((sdj.project.eventcalendar.protobuf.User) request,
               (io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.User>) responseObserver);
           break;
         default:
@@ -488,6 +554,7 @@ public final class GRPCUserServiceGrpc {
               .addMethod(getRPCsaveUserMethod())
               .addMethod(getRPCupdateUserMethod())
               .addMethod(getRPCdeleteUserMethod())
+              .addMethod(getRPCGetListOfAllUsersMethod())
               .build();
         }
       }

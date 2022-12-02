@@ -1,6 +1,7 @@
 package sdj.project.eventcalendar.Entity;
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "users")
@@ -21,14 +22,25 @@ public class UserEntity {
     private String gender;
 
     @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    private Timestamp dateOfBirth;
 
     @Column(name = "address")
     private String address;
 
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private ArrayList<EventEntity> createdevents;
+
+    @ManyToMany
+    @JoinTable(
+            name = "events_joined",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id"))
+    protected ArrayList<EventEntity> joinedEvents;
+
     public UserEntity(){}
 
-    public UserEntity(Long id, String name,String password, String gender, Date dateOfBirth, String address) {
+    public UserEntity(Long id, String name,String password, String gender, Timestamp dateOfBirth, String address) {
         this.id = id;
         this.name = name;
         this.password=password;
@@ -61,6 +73,8 @@ public class UserEntity {
         this.password = password;
     }
 
+
+
     public String getGender() {
         return gender;
     }
@@ -69,11 +83,11 @@ public class UserEntity {
         this.gender = gender;
     }
 
-    public Date getDateOfBirth() {
+    public Timestamp getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(Timestamp dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -83,5 +97,21 @@ public class UserEntity {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public ArrayList<EventEntity> getCreatedevents() {
+        return createdevents;
+    }
+
+    public void setCreatedevents(ArrayList<EventEntity> createdevents) {
+        this.createdevents = createdevents;
+    }
+
+    public ArrayList<EventEntity> getJoinedEvents() {
+        return joinedEvents;
+    }
+
+    public void setJoinedEvents(ArrayList<EventEntity> joinedEvents) {
+        this.joinedEvents = joinedEvents;
     }
 }

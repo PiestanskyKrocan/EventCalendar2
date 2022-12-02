@@ -1,16 +1,14 @@
 syntax = "proto3";
 option java_multiple_files = true;
 package sdj.project.eventcalendar.protobuf;
-import "Event.proto";
 
 message User {
-  int32 user_id=1;
+  int64 user_id=1;
   string name = 2;
   string password = 3;
   string gender = 4;
   string date_of_birth = 5;
   string address = 6;
-  repeated Event event = 7;
 }
 
 service GRPCUserService {
@@ -22,5 +20,8 @@ service GRPCUserService {
   rpc RPCupdateUser(User) returns (User);
 
   rpc RPCdeleteUser(User) returns (User);
+
+  rpc RPCGetListOfAllUsers(User) returns (stream User){}
+
 }
 
