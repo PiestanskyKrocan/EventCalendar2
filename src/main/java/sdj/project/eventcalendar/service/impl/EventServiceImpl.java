@@ -10,6 +10,7 @@ import sdj.project.eventcalendar.service.EventService;
 
 import java.util.ArrayList;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,6 +19,7 @@ public class EventServiceImpl implements EventService {
 
     private final EventRespiratory eventRespiratory;
 
+
     public EventServiceImpl(EventRespiratory eventRespiratory) {
         this.eventRespiratory = eventRespiratory;
     }
@@ -25,12 +27,16 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public ArrayList<UserEntity> findUsersByEventId(Long id) {
-        return eventRespiratory.findUsersByEventId(id);
+    Optional<EventEntity> event =   eventRespiratory.findById(id);
+    ArrayList<UserEntity> arrayList = new ArrayList<UserEntity>(event.get().getJoined());
+    return arrayList;
     }
 
     @Override
     public ArrayList<EventEntity> findAllEvents() {
-        return eventRespiratory.findAllEvents();
+        ArrayList<EventEntity> arrayList = new ArrayList<EventEntity>(eventRespiratory.findAll());
+        return arrayList;
+
     }
 
     @Override

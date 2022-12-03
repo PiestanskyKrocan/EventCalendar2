@@ -22,7 +22,7 @@ service GRPCEventService {
 
   rpc RPCGetListOfEvents(User) returns (stream Event){}
 
-
+  rpc RPCGetListOfAllUsers(User) returns (stream User){}
 
 
   rpc RPCfindEventById(Event) returns (Event);

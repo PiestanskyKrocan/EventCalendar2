@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public interface EventService {
+
+
     ArrayList<UserEntity> findUsersByEventId(Long id);
     ArrayList<EventEntity> findAllEvents();
     Optional<EventEntity> findById(Long id) throws ChangeSetPersister.NotFoundException;

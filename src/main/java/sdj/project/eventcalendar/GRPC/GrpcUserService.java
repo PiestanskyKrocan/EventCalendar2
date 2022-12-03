@@ -12,6 +12,7 @@ import sdj.project.eventcalendar.protobuf.User;
 import sdj.project.eventcalendar.service.UserService;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -24,11 +25,28 @@ public class GrpcUserService extends GRPCUserServiceGrpc.GRPCUserServiceImplBase
     private UserEntity user;
     private Optional<UserEntity> optionalUserEntity;
 
+    private ArrayList<UserEntity> arrayList;
+
 
     @Override
     public void rPCGetListOfAllUsers(User request, StreamObserver<User> responseObserver) {
-        super.rPCGetListOfAllUsers(request, responseObserver);
-    }
+        arrayList = userService.findAllUsers();
+
+            for (int i = 1; i <= arrayList.size(); i++) {
+
+                User userresponse = User.newBuilder()
+                        .setUserId(arrayList.get(i).getId())
+                        .setName(arrayList.get(i).getName())
+                        .setPassword(arrayList.get(i).getPassword())
+                        .setGender(arrayList.get(i).getGender())
+                        .setDateOfBirth(String.valueOf(arrayList.get(i).getDateOfBirth()))
+                        .setAddress(arrayList.get(i).getAddress())
+                        .build();
+                responseObserver.onNext(userresponse);
+            }
+            responseObserver.onCompleted();
+        }
+
 
     @Override
     public void rPCfindUserById(User request, StreamObserver<User> responseObserver) {

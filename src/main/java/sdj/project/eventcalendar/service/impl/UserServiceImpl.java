@@ -3,6 +3,7 @@ package sdj.project.eventcalendar.service.impl;
 import org.springframework.stereotype.Service;
 import sdj.project.eventcalendar.Entity.EventEntity;
 import sdj.project.eventcalendar.Entity.UserEntity;
+import sdj.project.eventcalendar.respiratory.EventRespiratory;
 import sdj.project.eventcalendar.respiratory.UserRespiratory;
 import sdj.project.eventcalendar.service.UserService;
 
@@ -20,17 +21,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ArrayList<EventEntity> findAllJoinedEvents(Long id) {
-        return userRespiratory.findAllJoinedEvents(id);
+        Optional<UserEntity> user = userRespiratory.findById(id);
+        ArrayList<EventEntity> arrayList = new ArrayList<EventEntity>(user.get().getJoinedEvents());
+        return arrayList;
+
     }
 
     @Override
     public ArrayList<EventEntity> findAllCreatedEvents(Long id) {
-        return userRespiratory.findAllCreatedEvents(id);
-    }
+            Optional<UserEntity> user = userRespiratory.findById(id);
+            ArrayList<EventEntity> arrayList = new ArrayList<EventEntity>(user.get().getCreatedevents());
+            return arrayList;
+        }
+
 
     @Override
     public ArrayList<UserEntity> findAllUsers() {
-        return userRespiratory.findAllUsers();
+        ArrayList<UserEntity> arrayList = new ArrayList<UserEntity>();
+        arrayList.addAll(userRespiratory.findAll());
+        return arrayList;
     }
 
     @Override

@@ -15,7 +15,6 @@ public interface UserService {
 
     ArrayList<UserEntity> findAllUsers();
 
-
     Optional<UserEntity> findById(Long id);
     UserEntity saveUser(UserEntity userEntity);
     UserEntity updateUser(UserEntity userEntity);

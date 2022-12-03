@@ -118,4 +118,6 @@ public class EventEntity {
     public void setJoined(Set<UserEntity> joined) {
         this.joined = joined;
     }
+
+
 }

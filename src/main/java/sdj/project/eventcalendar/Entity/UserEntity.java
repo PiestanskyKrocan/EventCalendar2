@@ -117,5 +117,7 @@ public class UserEntity {
         this.joinedEvents = joinedEvents;
     }
 
-
+    public List<EventEntity> getCreatedevents() {
+        return createdevents;
+    }
 }

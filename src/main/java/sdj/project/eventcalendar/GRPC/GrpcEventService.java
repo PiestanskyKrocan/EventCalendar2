@@ -11,47 +11,137 @@ import sdj.project.eventcalendar.protobuf.GRPCEventServiceGrpc;
 import sdj.project.eventcalendar.protobuf.User;
 import sdj.project.eventcalendar.respiratory.EventRespiratory;
 import sdj.project.eventcalendar.service.EventService;
+import sdj.project.eventcalendar.service.UserService;
 import sdj.project.eventcalendar.service.impl.EventServiceImpl;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
 public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplBase {
 
-    private final EventRespiratory repository;
 
     private EventService eventService;
+
+    private UserService userService;
     private Optional<EventEntity> optionaleventEntity;
+
+    private ArrayList<EventEntity> eventlist;
+
+    private ArrayList<UserEntity> userlist;
+
     private EventEntity eventEntity;
 
     private UserEntity user;
 
     private User userProto;
 
-    public GrpcEventService(EventRespiratory repository) {
-        this.repository = repository;
-    }
-
     @Override
     public void rPCGetListOfEvents(User request, StreamObserver<Event> responseObserver) {
-        super.rPCGetListOfEvents(request, responseObserver);
+        eventlist = eventService.findAllEvents();
+
+        for (int i = 1; i <= eventlist.size(); i++) {
+
+            userProto = User.newBuilder()
+                    .setUserId(eventlist.get(i).getUser().getId())
+                    .setName(eventlist.get(i).getUser().getName())
+                    .setPassword( eventlist.get(i).getUser().getPassword())
+                    .setGender(eventlist.get(i).getUser().getGender())
+                    .setDateOfBirth(String.valueOf(eventlist.get(i).getUser().getDateOfBirth()))
+                    .setAddress(eventlist.get(i).getUser().getAddress())
+                    .build();
+
+            Event eventresponse = Event.newBuilder()
+                    .setEventId(eventlist.get(i).getId())
+                    .setName(eventlist.get(i).getName())
+                    .setBodytext(eventlist.get(i).getBodytext())
+                    .setStartTime(String.valueOf(eventlist.get(i).getStartTime()))
+                    .setEndTime(String.valueOf(eventlist.get(i).getEndTime()))
+                    .setAddress(eventlist.get(i).getAddress())
+                    .setCreator(userProto)
+                    .build();
+            responseObserver.onNext(eventresponse);
+        }
+        responseObserver.onCompleted();
     }
+
 
     @Override
     public void rPCGetListofCreatedEvents(User request, StreamObserver<Event> responseObserver) {
-        super.rPCGetListofCreatedEvents(request, responseObserver);
+        eventlist = userService.findAllCreatedEvents(request.getUserId());
+
+        for (int i = 1; i <= eventlist.size(); i++) {
+
+            userProto = User.newBuilder()
+                    .setUserId(eventlist.get(i).getUser().getId())
+                    .setName(eventlist.get(i).getUser().getName())
+                    .setPassword( eventlist.get(i).getUser().getPassword())
+                    .setGender(eventlist.get(i).getUser().getGender())
+                    .setDateOfBirth(String.valueOf(eventlist.get(i).getUser().getDateOfBirth()))
+                    .setAddress(eventlist.get(i).getUser().getAddress())
+                    .build();
+
+            Event eventresponse = Event.newBuilder()
+                    .setEventId(eventlist.get(i).getId())
+                    .setName(eventlist.get(i).getName())
+                    .setBodytext(eventlist.get(i).getBodytext())
+                    .setStartTime(String.valueOf(eventlist.get(i).getStartTime()))
+                    .setEndTime(String.valueOf(eventlist.get(i).getEndTime()))
+                    .setAddress(eventlist.get(i).getAddress())
+                    .setCreator(userProto)
+                    .build();
+            responseObserver.onNext(eventresponse);
+        }
+        responseObserver.onCompleted();
     }
 
     @Override
     public void rPCGetListOfJoinedEvents(User request, StreamObserver<Event> responseObserver) {
-        super.rPCGetListOfJoinedEvents(request, responseObserver);
+        eventlist = userService.findAllJoinedEvents(request.getUserId());
+
+        for (int i = 1; i <= eventlist.size(); i++) {
+
+            userProto = User.newBuilder()
+                    .setUserId(eventlist.get(i).getUser().getId())
+                    .setName(eventlist.get(i).getUser().getName())
+                    .setPassword( eventlist.get(i).getUser().getPassword())
+                    .setGender(eventlist.get(i).getUser().getGender())
+                    .setDateOfBirth(String.valueOf(eventlist.get(i).getUser().getDateOfBirth()))
+                    .setAddress(eventlist.get(i).getUser().getAddress())
+                    .build();
+
+            Event eventresponse = Event.newBuilder()
+                    .setEventId(eventlist.get(i).getId())
+                    .setName(eventlist.get(i).getName())
+                    .setBodytext(eventlist.get(i).getBodytext())
+                    .setStartTime(String.valueOf(eventlist.get(i).getStartTime()))
+                    .setEndTime(String.valueOf(eventlist.get(i).getEndTime()))
+                    .setAddress(eventlist.get(i).getAddress())
+                    .setCreator(userProto)
+                    .build();
+            responseObserver.onNext(eventresponse);
+        }
+        responseObserver.onCompleted();
     }
 
     @Override
     public void rPCGetListOfUsersinEvent(Event request, StreamObserver<User> responseObserver) {
-        super.rPCGetListOfUsersinEvent(request, responseObserver);
+        userlist = eventService.findUsersByEventId(request.getEventId());
+
+        for (int i = 1; i <= userlist.size(); i++) {
+            User useresponse = User.newBuilder()
+                    .setUserId(eventlist.get(i).getUser().getId())
+                    .setName(eventlist.get(i).getUser().getName())
+                    .setPassword( eventlist.get(i).getUser().getPassword())
+                    .setGender(eventlist.get(i).getUser().getGender())
+                    .setDateOfBirth(String.valueOf(eventlist.get(i).getUser().getDateOfBirth()))
+                    .setAddress(eventlist.get(i).getUser().getAddress())
+                    .build();
+            responseObserver.onNext(useresponse);
+        }
+        responseObserver.onCompleted();
     }
 
     @Override
