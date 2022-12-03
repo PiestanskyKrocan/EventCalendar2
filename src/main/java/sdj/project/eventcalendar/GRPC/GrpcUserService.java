@@ -26,6 +26,11 @@ public class GrpcUserService extends GRPCUserServiceGrpc.GRPCUserServiceImplBase
 
 
     @Override
+    public void rPCGetListOfAllUsers(User request, StreamObserver<User> responseObserver) {
+        super.rPCGetListOfAllUsers(request, responseObserver);
+    }
+
+    @Override
     public void rPCfindUserById(User request, StreamObserver<User> responseObserver) {
         super.rPCfindUserById(request, responseObserver);
 

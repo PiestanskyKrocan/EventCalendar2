@@ -1,9 +1,13 @@
 package sdj.project.eventcalendar.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "events")
@@ -28,11 +32,11 @@ public class EventEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private UserEntity user;
+    UserEntity user;
 
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "joinedEvents")
-    private ArrayList<UserEntity> joined;
+    Set<UserEntity> joined = new HashSet<>();
 
 
     @Column(name = "address")
@@ -107,11 +111,11 @@ public class EventEntity {
         this.address = address;
     }
 
-    public ArrayList<UserEntity> getJoined() {
+    public Set<UserEntity> getJoined() {
         return joined;
     }
 
-    public void setJoined(ArrayList<UserEntity> joined) {
+    public void setJoined(Set<UserEntity> joined) {
         this.joined = joined;
     }
 }

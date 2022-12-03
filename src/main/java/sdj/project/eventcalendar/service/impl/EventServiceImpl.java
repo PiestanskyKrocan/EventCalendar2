@@ -2,6 +2,7 @@ package sdj.project.eventcalendar.service.impl;
 
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sdj.project.eventcalendar.Entity.EventEntity;
 import sdj.project.eventcalendar.Entity.UserEntity;
 import sdj.project.eventcalendar.respiratory.EventRespiratory;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class EventServiceImpl implements EventService {
 
     private final EventRespiratory eventRespiratory;
@@ -61,3 +63,5 @@ public class EventServiceImpl implements EventService {
         eventRespiratory.deleteById(id);
     }
 }
+
+

@@ -2,6 +2,9 @@ package sdj.project.eventcalendar.Entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -27,16 +30,18 @@ public class UserEntity {
     @Column(name = "address")
     private String address;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     @JoinColumn(name = "user_id")
-    private ArrayList<EventEntity> createdevents;
+    List<EventEntity> createdevents;
+
 
     @ManyToMany
     @JoinTable(
             name = "events_joined",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "event_id"))
-    protected ArrayList<EventEntity> joinedEvents;
+    Set<EventEntity> joinedEvents = new HashSet<>();
+
 
     public UserEntity(){}
 
@@ -99,19 +104,18 @@ public class UserEntity {
         this.address = address;
     }
 
-    public ArrayList<EventEntity> getCreatedevents() {
-        return createdevents;
-    }
 
     public void setCreatedevents(ArrayList<EventEntity> createdevents) {
         this.createdevents = createdevents;
     }
 
-    public ArrayList<EventEntity> getJoinedEvents() {
+    public Set<EventEntity> getJoinedEvents() {
         return joinedEvents;
     }
 
-    public void setJoinedEvents(ArrayList<EventEntity> joinedEvents) {
+    public void setJoinedEvents(Set<EventEntity> joinedEvents) {
         this.joinedEvents = joinedEvents;
     }
+
+
 }
