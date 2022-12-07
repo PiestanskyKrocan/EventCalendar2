@@ -33,7 +33,7 @@ public final class EventOuterClass {
       "_id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\020\n\010bodytext\030\003 \001(" +
       "\t\022\021\n\tstartTime\030\004 \001(\t\022\017\n\007endTime\030\005 \001(\t\022\017\n" +
       "\007address\030\006 \001(\t\0229\n\007creator\030\007 \001(\0132(.sdj.pr" +
-      "oject.eventcalendar.protobuf.User2\201\007\n\020GR" +
+      "oject.eventcalendar.protobuf.User2\361\007\n\020GR" +
       "PCEventService\022s\n\030RPCGetListOfUsersinEve" +
       "nt\022).sdj.project.eventcalendar.protobuf." +
       "Event\032(.sdj.project.eventcalendar.protob" +
@@ -45,18 +45,21 @@ public final class EventOuterClass {
       ").sdj.project.eventcalendar.protobuf.Eve" +
       "nt\"\0000\001\022m\n\022RPCGetListOfEvents\022(.sdj.proje" +
       "ct.eventcalendar.protobuf.User\032).sdj.pro" +
-      "ject.eventcalendar.protobuf.Event\"\0000\001\022h\n" +
-      "\020RPCfindEventById\022).sdj.project.eventcal" +
-      "endar.protobuf.Event\032).sdj.project.event" +
-      "calendar.protobuf.Event\022d\n\014RPCsaveEvent\022" +
+      "ject.eventcalendar.protobuf.Event\"\0000\001\022n\n" +
+      "\024RPCGetListOfAllUsers\022(.sdj.project.even" +
+      "tcalendar.protobuf.User\032(.sdj.project.ev" +
+      "entcalendar.protobuf.User\"\0000\001\022h\n\020RPCfind" +
+      "EventById\022).sdj.project.eventcalendar.pr" +
+      "otobuf.Event\032).sdj.project.eventcalendar" +
+      ".protobuf.Event\022d\n\014RPCsaveEvent\022).sdj.pr" +
+      "oject.eventcalendar.protobuf.Event\032).sdj" +
+      ".project.eventcalendar.protobuf.Event\022f\n" +
+      "\016RPCupdateEvent\022).sdj.project.eventcalen" +
+      "dar.protobuf.Event\032).sdj.project.eventca" +
+      "lendar.protobuf.Event\022f\n\016RPCdeleteEvent\022" +
       ").sdj.project.eventcalendar.protobuf.Eve" +
       "nt\032).sdj.project.eventcalendar.protobuf." +
-      "Event\022f\n\016RPCupdateEvent\022).sdj.project.ev" +
-      "entcalendar.protobuf.Event\032).sdj.project" +
-      ".eventcalendar.protobuf.Event\022f\n\016RPCdele" +
-      "teEvent\022).sdj.project.eventcalendar.prot" +
-      "obuf.Event\032).sdj.project.eventcalendar.p" +
-      "rotobuf.EventB\002P\001b\006proto3"
+      "EventB\002P\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

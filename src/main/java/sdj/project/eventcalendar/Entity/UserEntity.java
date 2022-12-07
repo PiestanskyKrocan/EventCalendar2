@@ -30,17 +30,16 @@ public class UserEntity {
     @Column(name = "address")
     private String address;
 
-    @OneToMany(mappedBy = "user")
-    @JoinColumn(name = "user_id")
-    List<EventEntity> createdevents;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    List<EventEntity> createdevents = new ArrayList<>();
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(
             name = "events_joined",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "event_id"))
-    Set<EventEntity> joinedEvents = new HashSet<>();
+    List<EventEntity>joinedEvents = new ArrayList<>();
 
 
     public UserEntity(){}
@@ -104,20 +103,36 @@ public class UserEntity {
         this.address = address;
     }
 
-
-    public void setCreatedevents(ArrayList<EventEntity> createdevents) {
-        this.createdevents = createdevents;
-    }
-
-    public Set<EventEntity> getJoinedEvents() {
-        return joinedEvents;
-    }
-
-    public void setJoinedEvents(Set<EventEntity> joinedEvents) {
-        this.joinedEvents = joinedEvents;
-    }
-
     public List<EventEntity> getCreatedevents() {
         return createdevents;
     }
+
+    public void setCreatedevents(List<EventEntity> createdevents) {
+        this.createdevents = createdevents;
+    }
+
+    public List<EventEntity> getJoinedEvents() {
+        return joinedEvents;
+    }
+
+    public void setJoinedEvents(List<EventEntity> joinedEvents) {
+        this.joinedEvents = joinedEvents;
+    }
+
+    public void  addEvent(EventEntity event) {
+        joinedEvents.add(event);
+    }
+
+    public void removeEvent(EventEntity event){
+        joinedEvents.remove(event);
+    }
+
+    public void  createEvent(EventEntity event) {
+        createdevents.add(event);
+    }
+
+    public void deleteEvent(EventEntity event){
+        createdevents.remove(event);
+    }
+
 }

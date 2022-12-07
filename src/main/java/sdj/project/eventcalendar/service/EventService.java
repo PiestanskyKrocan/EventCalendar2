@@ -5,12 +5,13 @@ import sdj.project.eventcalendar.Entity.EventEntity;
 import sdj.project.eventcalendar.Entity.UserEntity;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public interface EventService {
 
 
-    ArrayList<UserEntity> findUsersByEventId(Long id);
+    List<UserEntity> findUsersByEventId(Long id);
     ArrayList<EventEntity> findAllEvents();
     Optional<EventEntity> findById(Long id) throws ChangeSetPersister.NotFoundException;
     EventEntity saveEvent(EventEntity eventEntity);

@@ -1,5 +1,4 @@
 package sdj.project.eventcalendar.GRPC;
-
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -9,13 +8,13 @@ import sdj.project.eventcalendar.Entity.UserEntity;
 import sdj.project.eventcalendar.protobuf.Event;
 import sdj.project.eventcalendar.protobuf.GRPCEventServiceGrpc;
 import sdj.project.eventcalendar.protobuf.User;
-import sdj.project.eventcalendar.respiratory.EventRespiratory;
 import sdj.project.eventcalendar.service.EventService;
 import sdj.project.eventcalendar.service.UserService;
-import sdj.project.eventcalendar.service.impl.EventServiceImpl;
+
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -30,11 +29,12 @@ public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplB
 
     private ArrayList<EventEntity> eventlist;
 
+    private List<UserEntity> list;
+
     private ArrayList<UserEntity> userlist;
 
     private EventEntity eventEntity;
-
-    private UserEntity user;
+    private UserEntity userEntity;
 
     private User userProto;
 
@@ -99,7 +99,7 @@ public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplB
 
     @Override
     public void rPCGetListOfJoinedEvents(User request, StreamObserver<Event> responseObserver) {
-        eventlist = userService.findAllJoinedEvents(request.getUserId());
+        eventlist = new ArrayList<>(userService.findAllJoinedEvents(request.getUserId()));
 
         for (int i = 1; i <= eventlist.size(); i++) {
 
@@ -128,11 +128,11 @@ public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplB
 
     @Override
     public void rPCGetListOfUsersinEvent(Event request, StreamObserver<User> responseObserver) {
-        userlist = eventService.findUsersByEventId(request.getEventId());
+        list = eventService.findUsersByEventId(request.getEventId());
 
-        for (int i = 1; i <= userlist.size(); i++) {
+        for (int i = 1; i <= list.size(); i++) {
             User useresponse = User.newBuilder()
-                    .setUserId(eventlist.get(i).getUser().getId())
+                    .setUserId(list.get(i).getId())
                     .setName(eventlist.get(i).getUser().getName())
                     .setPassword( eventlist.get(i).getUser().getPassword())
                     .setGender(eventlist.get(i).getUser().getGender())
@@ -147,16 +147,15 @@ public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplB
     @Override
     public void rPCfindEventById(Event request, StreamObserver<Event> responseObserver) {
 
-        Long eventId = request.getEventId();
 
-        try{optionaleventEntity = eventService.findById(eventId);} catch (ChangeSetPersister.NotFoundException e) {
+        try{optionaleventEntity = eventService.findById(request.getEventId());} catch (ChangeSetPersister.NotFoundException e) {
             throw new RuntimeException(e);
         }
 
 
         try {
                 Event eventresponse = Event.newBuilder()
-                        .setEventId(eventId)
+                        .setEventId(optionaleventEntity.get().getId())
                         .setName(optionaleventEntity.get().getName())
                         .setBodytext(optionaleventEntity.get().getBodytext())
                         .setStartTime(String.valueOf(optionaleventEntity.get().getStartTime()))
@@ -182,29 +181,26 @@ public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplB
 
     @Override
     public void rPCsaveEvent(Event request, StreamObserver<Event> responseObserver) {
-        Long eventId = request.getEventId();
-        User usrent;
         eventEntity = new EventEntity(request.getEventId(),
                 request.getName(),
                 request.getBodytext(),
                 Timestamp.valueOf(request.getStartTime()),
                 Timestamp.valueOf(request.getEndTime()),
+                request.getAddress(),
                 new UserEntity(
                         request.getCreator().getUserId(),
                         request.getCreator().getName(),
                         request.getCreator().getPassword(),
                         request.getCreator().getGender(),
                         Timestamp.valueOf(request.getCreator().getDateOfBirth()),
-                        request.getCreator().getAddress()
-                ),
-                request.getAddress());
+                        request.getCreator().getAddress()));
 
-        eventEntity = eventService.saveEvent(eventEntity);
+        eventService.saveEvent(eventEntity);
 
 
         try {
             Event eventresponse = Event.newBuilder()
-                    .setEventId(eventId)
+                    .setEventId(eventEntity.getId())
                     .setName(eventEntity.getName())
                     .setBodytext(eventEntity.getBodytext())
                     .setStartTime(String.valueOf(eventEntity.getStartTime()))
@@ -226,13 +222,12 @@ public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplB
 
     @Override
     public void rPCupdateEvent(Event request, StreamObserver<Event> responseObserver) {
-            Long eventId = request.getEventId();
-            User usrent;
             eventEntity= new EventEntity(request.getEventId(),
                     request.getName(),
                     request.getBodytext(),
                     Timestamp.valueOf(request.getStartTime()),
                     Timestamp.valueOf(request.getEndTime()),
+                    request.getAddress(),
                     new UserEntity(
                             request.getCreator().getUserId(),
                             request.getCreator().getName(),
@@ -240,15 +235,14 @@ public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplB
                             request.getCreator().getGender(),
                             Timestamp.valueOf(request.getCreator().getDateOfBirth()),
                             request.getCreator().getAddress()
-                    ),
-                    request.getAddress());
+                    ));
 
-            eventEntity = eventService.updateEvent(eventEntity);
+            eventService.updateEvent(eventEntity);
 
 
             try {
                 Event eventresponse = Event.newBuilder()
-                        .setEventId(eventId)
+                        .setEventId(eventEntity.getId())
                         .setName(eventEntity.getName())
                         .setBodytext(eventEntity.getBodytext())
                         .setStartTime(String.valueOf(eventEntity.getStartTime()))
@@ -271,28 +265,26 @@ public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplB
 
     @Override
     public void rPCdeleteEvent(Event request, StreamObserver<Event> responseObserver) {
-        Long eventId = request.getEventId();
         eventEntity = new EventEntity(request.getEventId(),
                 request.getName(),
                 request.getBodytext(),
                 Timestamp.valueOf(request.getStartTime()),
                 Timestamp.valueOf(request.getEndTime()),
+                request.getAddress(),
                 new UserEntity(
                         request.getCreator().getUserId(),
                         request.getCreator().getName(),
                         request.getCreator().getPassword(),
                         request.getCreator().getGender(),
                         Timestamp.valueOf(request.getCreator().getDateOfBirth()),
-                        request.getCreator().getAddress()
-                ),
-                request.getAddress());
+                        request.getCreator().getAddress()));
 
-        eventService.deleteEvent(eventId);
+        eventService.deleteEvent(eventEntity.getId());
 
 
         try {
             Event eventresponse = Event.newBuilder()
-                    .setEventId(eventId)
+                    .setEventId(eventEntity.getId())
                     .setName(eventEntity.getName())
                     .setBodytext(eventEntity.getBodytext())
                     .setStartTime(String.valueOf(eventEntity.getStartTime()))

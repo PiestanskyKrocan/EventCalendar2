@@ -9,11 +9,11 @@ import java.util.Optional;
 
 public interface UserService {
 
-    ArrayList<EventEntity> findAllJoinedEvents(Long id);
+    List<EventEntity> findAllJoinedEvents(Long id);
 
     ArrayList<EventEntity> findAllCreatedEvents(Long id);
 
-    ArrayList<UserEntity> findAllUsers();
+    List<UserEntity> findAllUsers();
 
     Optional<UserEntity> findById(Long id);
     UserEntity saveUser(UserEntity userEntity);

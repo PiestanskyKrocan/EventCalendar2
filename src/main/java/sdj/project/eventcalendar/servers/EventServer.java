@@ -3,7 +3,7 @@ package sdj.project.eventcalendar.servers;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import sdj.project.eventcalendar.GRPC.GrpcEventService;
-import sdj.project.eventcalendar.GRPC.GrpcUserService;
+
 
 import java.io.IOException;
 

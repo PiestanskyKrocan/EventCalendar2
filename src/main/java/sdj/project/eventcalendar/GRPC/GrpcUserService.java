@@ -3,10 +3,8 @@ package sdj.project.eventcalendar.GRPC;
 import io.grpc.Grpc;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import sdj.project.eventcalendar.Entity.EventEntity;
 import sdj.project.eventcalendar.Entity.UserEntity;
-import sdj.project.eventcalendar.protobuf.Event;
 import sdj.project.eventcalendar.protobuf.GRPCUserServiceGrpc;
 import sdj.project.eventcalendar.protobuf.User;
 import sdj.project.eventcalendar.service.UserService;
@@ -19,18 +17,16 @@ import java.util.Optional;
 public class GrpcUserService extends GRPCUserServiceGrpc.GRPCUserServiceImplBase {
 
     private UserService userService;
-    private EventEntity eventEntity;
-    private Grpc grpcUserService;
-    private GRPCUserServiceGrpc grpc;
     private UserEntity user;
     private Optional<UserEntity> optionalUserEntity;
 
     private ArrayList<UserEntity> arrayList;
 
 
+
     @Override
     public void rPCGetListOfAllUsers(User request, StreamObserver<User> responseObserver) {
-        arrayList = userService.findAllUsers();
+        arrayList = new ArrayList<>(userService.findAllUsers());
 
             for (int i = 1; i <= arrayList.size(); i++) {
 

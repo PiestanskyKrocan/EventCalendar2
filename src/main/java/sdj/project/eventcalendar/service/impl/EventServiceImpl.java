@@ -6,36 +6,55 @@ import org.springframework.transaction.annotation.Transactional;
 import sdj.project.eventcalendar.Entity.EventEntity;
 import sdj.project.eventcalendar.Entity.UserEntity;
 import sdj.project.eventcalendar.respiratory.EventRespiratory;
+import sdj.project.eventcalendar.respiratory.UserRespiratory;
 import sdj.project.eventcalendar.service.EventService;
 
 import java.util.ArrayList;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Transactional
 public class EventServiceImpl implements EventService {
 
-    private final EventRespiratory eventRespiratory;
+    private EventRespiratory eventRespiratory;
+    private UserRespiratory userRespiratory;
 
 
-    public EventServiceImpl(EventRespiratory eventRespiratory) {
+
+    public EventServiceImpl(EventRespiratory eventRespiratory,UserRespiratory userRespiratory) {
         this.eventRespiratory = eventRespiratory;
+        this.userRespiratory = userRespiratory;
+
     }
 
-
     @Override
-    public ArrayList<UserEntity> findUsersByEventId(Long id) {
-    Optional<EventEntity> event =   eventRespiratory.findById(id);
-    ArrayList<UserEntity> arrayList = new ArrayList<UserEntity>(event.get().getJoined());
-    return arrayList;
+    public List<UserEntity> findUsersByEventId(Long id) {
+        ArrayList<UserEntity> userentities = (ArrayList<UserEntity>) userRespiratory.findAll();
+        ArrayList<UserEntity> returnlist = new ArrayList<>();
+        ArrayList<EventEntity> events;
+
+        for (UserEntity entity : userentities)
+        {
+            events = new ArrayList<EventEntity>(entity.getJoinedEvents());
+            for (EventEntity event : events)
+            {
+                if(event.getId()==id){
+                    returnlist.add(entity);
+                    break;
+                }
+            }
+        }
+        return returnlist;
     }
 
     @Override
     public ArrayList<EventEntity> findAllEvents() {
-        ArrayList<EventEntity> arrayList = new ArrayList<EventEntity>(eventRespiratory.findAll());
-        return arrayList;
+        List<EventEntity> list;
+        list = eventRespiratory.findAll();
+        return new ArrayList<>(list);
 
     }
 
@@ -60,8 +79,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public EventEntity updateEvent(EventEntity eventEntity) {
-        EventEntity eventToBeUpdated = eventRespiratory.save(eventEntity);
-        return eventToBeUpdated;
+        return eventRespiratory.save(eventEntity);
     }
 
     @Override

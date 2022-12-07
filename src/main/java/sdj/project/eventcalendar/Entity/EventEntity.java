@@ -30,22 +30,22 @@ public class EventEntity {
     @Column(name = "endTime")
     private Timestamp endTime;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    UserEntity user;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "joinedEvents")
-    Set<UserEntity> joined = new HashSet<>();
+    @ManyToMany(mappedBy = "joinedEvents", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    List<UserEntity> joinedUsers = new ArrayList<>();
 
 
     @Column(name = "address")
     private String address;
 
 
-    public EventEntity(){}
+    public EventEntity() {
+    }
 
-    public EventEntity(Long id, String name, String bodytext, Timestamp startTime, Timestamp endTime, UserEntity user,String address) {
+    public EventEntity(Long id, String name, String bodytext, Timestamp startTime, Timestamp endTime, String address, UserEntity user) {
         this.id = id;
         this.name = name;
         this.bodytext = bodytext;
@@ -111,13 +111,22 @@ public class EventEntity {
         this.address = address;
     }
 
-    public Set<UserEntity> getJoined() {
-        return joined;
+    public List<UserEntity> getJoined() {
+        return joinedUsers;
     }
 
-    public void setJoined(Set<UserEntity> joined) {
-        this.joined = joined;
+    public void setJoined(List<UserEntity> joined) {
+        this.joinedUsers = joinedUsers;
     }
 
+    public void addUser(UserEntity user) {
+        joinedUsers.add(user);
+    }
 
+    public void removeUser(UserEntity user) {
+        joinedUsers.remove(user);
+
+    }
 }
+
+
