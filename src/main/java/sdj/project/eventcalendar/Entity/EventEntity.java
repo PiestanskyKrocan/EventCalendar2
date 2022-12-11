@@ -35,7 +35,7 @@ public class EventEntity {
     private UserEntity user;
 
     @ManyToMany(mappedBy = "joinedEvents", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    List<UserEntity> joinedUsers = new ArrayList<>();
+    Set<UserEntity> joinedUsers = new HashSet<>();
 
 
     @Column(name = "address")
@@ -111,11 +111,11 @@ public class EventEntity {
         this.address = address;
     }
 
-    public List<UserEntity> getJoined() {
+    public Set<UserEntity> getJoined() {
         return joinedUsers;
     }
 
-    public void setJoined(List<UserEntity> joined) {
+    public void setJoined(Set<UserEntity> joined) {
         this.joinedUsers = joinedUsers;
     }
 

@@ -39,7 +39,7 @@ public class UserEntity {
             name = "events_joined",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "event_id"))
-    List<EventEntity>joinedEvents = new ArrayList<>();
+    Set<EventEntity>joinedEvents = new HashSet<>();
 
 
     public UserEntity(){}
@@ -111,11 +111,11 @@ public class UserEntity {
         this.createdevents = createdevents;
     }
 
-    public List<EventEntity> getJoinedEvents() {
+    public Set<EventEntity> getJoinedEvents() {
         return joinedEvents;
     }
 
-    public void setJoinedEvents(List<EventEntity> joinedEvents) {
+    public void setJoinedEvents(Set<EventEntity> joinedEvents) {
         this.joinedEvents = joinedEvents;
     }
 

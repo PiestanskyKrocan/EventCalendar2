@@ -1,6 +1,7 @@
 package sdj.project.eventcalendar.GRPC;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
+import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import sdj.project.eventcalendar.Entity.EventEntity;
@@ -18,7 +19,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-@Service
+@GRpcService
 public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplBase {
 
 
@@ -37,6 +38,11 @@ public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplB
     private UserEntity userEntity;
 
     private User userProto;
+
+    public GrpcEventService(EventService eventService, UserService userService) {
+        this.eventService = eventService;
+        this.userService = userService;
+    }
 
     @Override
     public void rPCGetListOfEvents(User request, StreamObserver<Event> responseObserver) {
@@ -70,7 +76,7 @@ public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplB
 
     @Override
     public void rPCGetListofCreatedEvents(User request, StreamObserver<Event> responseObserver) {
-        eventlist = userService.findAllCreatedEvents(request.getUserId());
+        eventlist = new ArrayList<>(userService.findAllCreatedEvents(request.getUserId()));
 
         for (int i = 1; i <= eventlist.size(); i++) {
 

@@ -3,6 +3,7 @@ package sdj.project.eventcalendar.GRPC;
 import io.grpc.Grpc;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
+import org.lognet.springboot.grpc.GRpcService;
 import sdj.project.eventcalendar.Entity.EventEntity;
 import sdj.project.eventcalendar.Entity.UserEntity;
 import sdj.project.eventcalendar.protobuf.GRPCUserServiceGrpc;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@GRpcService
 public class GrpcUserService extends GRPCUserServiceGrpc.GRPCUserServiceImplBase {
 
     private UserService userService;
@@ -22,7 +24,9 @@ public class GrpcUserService extends GRPCUserServiceGrpc.GRPCUserServiceImplBase
 
     private ArrayList<UserEntity> arrayList;
 
-
+    public GrpcUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public void rPCGetListOfAllUsers(User request, StreamObserver<User> responseObserver) {
@@ -48,7 +52,7 @@ public class GrpcUserService extends GRPCUserServiceGrpc.GRPCUserServiceImplBase
     public void rPCfindUserById(User request, StreamObserver<User> responseObserver) {
         super.rPCfindUserById(request, responseObserver);
 
-        user = new UserEntity((long)request.getUserId(),request.getName(), request.getPassword(),request.getGender(), Timestamp.valueOf(request.getDateOfBirth()),request.getAddress());
+        user = new UserEntity(request.getUserId(),request.getName(), request.getPassword(),request.getGender(), Timestamp.valueOf(request.getDateOfBirth()),request.getAddress());
 
         optionalUserEntity = userService.findById(user.getId());
 
