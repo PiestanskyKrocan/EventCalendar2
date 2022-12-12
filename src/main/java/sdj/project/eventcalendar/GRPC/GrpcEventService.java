@@ -78,7 +78,7 @@ public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplB
     public void rPCGetListofCreatedEvents(User request, StreamObserver<Event> responseObserver) {
         eventlist = new ArrayList<>(userService.findAllCreatedEvents(request.getUserId()));
 
-        for (int i = 1; i <= eventlist.size(); i++) {
+        for (int i = 0; i < eventlist.size(); i++) {
 
             userProto = User.newBuilder()
                     .setUserId(eventlist.get(i).getUser().getId())
@@ -107,7 +107,7 @@ public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplB
     public void rPCGetListOfJoinedEvents(User request, StreamObserver<Event> responseObserver) {
         eventlist = new ArrayList<>(userService.findAllJoinedEvents(request.getUserId()));
 
-        for (int i = 1; i <= eventlist.size(); i++) {
+        for (int i = 0; i < eventlist.size(); i++) {
 
             userProto = User.newBuilder()
                     .setUserId(eventlist.get(i).getUser().getId())
@@ -134,16 +134,16 @@ public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplB
 
     @Override
     public void rPCGetListOfUsersinEvent(Event request, StreamObserver<User> responseObserver) {
-        list = eventService.findUsersByEventId(request.getEventId());
+        userlist = new ArrayList<>(eventService.findUsersByEventId(request.getEventId()));
 
-        for (int i = 1; i <= list.size(); i++) {
+        for (int i = 0; i < userlist.size(); i++) {
             User useresponse = User.newBuilder()
-                    .setUserId(list.get(i).getId())
-                    .setName(eventlist.get(i).getUser().getName())
-                    .setPassword( eventlist.get(i).getUser().getPassword())
-                    .setGender(eventlist.get(i).getUser().getGender())
-                    .setDateOfBirth(String.valueOf(eventlist.get(i).getUser().getDateOfBirth()))
-                    .setAddress(eventlist.get(i).getUser().getAddress())
+                    .setUserId(userlist.get(i).getId())
+                    .setName(userlist.get(i).getName())
+                    .setPassword( userlist.get(i).getPassword())
+                    .setGender(userlist.get(i).getGender())
+                    .setDateOfBirth(String.valueOf(userlist.get(i).getDateOfBirth()))
+                    .setAddress(userlist.get(i).getAddress())
                     .build();
             responseObserver.onNext(useresponse);
         }

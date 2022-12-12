@@ -32,7 +32,7 @@ public class GrpcUserService extends GRPCUserServiceGrpc.GRPCUserServiceImplBase
     public void rPCGetListOfAllUsers(User request, StreamObserver<User> responseObserver) {
         arrayList = new ArrayList<>(userService.findAllUsers());
 
-            for (int i = 1; i <= arrayList.size(); i++) {
+            for (int i = 0; i < arrayList.size(); i++) {
 
                 User userresponse = User.newBuilder()
                         .setUserId(arrayList.get(i).getId())
@@ -59,7 +59,7 @@ public class GrpcUserService extends GRPCUserServiceGrpc.GRPCUserServiceImplBase
 
         try {
             User userresponse = User.newBuilder()
-                    .setUserId(user.getId())
+                    .setUserId(optionalUserEntity.get().getId())
                     .setName(optionalUserEntity.get().getName())
                     .setPassword(optionalUserEntity.get().getPassword())
                     .setGender(optionalUserEntity.get().getGender())
@@ -85,22 +85,21 @@ public class GrpcUserService extends GRPCUserServiceGrpc.GRPCUserServiceImplBase
     @Override
     public void rPCsaveUser(User request, StreamObserver<User> responseObserver) {
         super.rPCsaveUser(request, responseObserver);
-        user = new UserEntity((long)request.getUserId(),request.getName(), request.getPassword(),request.getGender(), Timestamp.valueOf(request.getDateOfBirth()),request.getAddress());
+        user = new UserEntity(request.getUserId(),request.getName(), request.getPassword(),request.getGender(), Timestamp.valueOf(request.getDateOfBirth()),request.getAddress());
         userService.saveUser(user);
     }
 
     @Override
     public void rPCupdateUser(User request, StreamObserver<User> responseObserver) {
-        user = new UserEntity((long)request.getUserId(),request.getName(), request.getPassword(),request.getGender(), Timestamp.valueOf(request.getDateOfBirth()),request.getAddress());
+        user = new UserEntity(request.getUserId(),request.getName(), request.getPassword(),request.getGender(), Timestamp.valueOf(request.getDateOfBirth()),request.getAddress());
         userService.updateUser(user);
-        super.rPCupdateUser(request, responseObserver);
+
 
     }
 
     @Override
     public void rPCdeleteUser(User request, StreamObserver<User> responseObserver) {
-        user = new UserEntity((long)request.getUserId(),request.getName(), request.getPassword(),request.getGender(), Timestamp.valueOf(request.getDateOfBirth()),request.getAddress());
+        user = new UserEntity(request.getUserId(),request.getName(), request.getPassword(),request.getGender(), Timestamp.valueOf(request.getDateOfBirth()),request.getAddress());
         userService.deleteUser(user.getId());
-        super.rPCdeleteUser(request, responseObserver);
     }
 }
