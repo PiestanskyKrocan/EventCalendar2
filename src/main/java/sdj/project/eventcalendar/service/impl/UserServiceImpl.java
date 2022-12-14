@@ -86,4 +86,24 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         userRespiratory.deleteById(id);
     }
+
+    @Override
+    public void addEvent(Long userId, Long eventId) {
+        Optional <EventEntity> optionalevent = eventRespiratory.findById(eventId);
+        Optional<UserEntity> optionaluser = userRespiratory.findById(userId);
+        Set<EventEntity> eventsInUser = (optionaluser.get().getJoinedEvents());
+        EventEntity event = new EventEntity(optionalevent.get().getId(), optionalevent.get().getName(),optionalevent.get().getBodytext(),optionalevent.get().getStartTime(),optionalevent.get().getEndTime(),optionalevent.get().getAddress(),optionalevent.get().getUser());
+        eventsInUser.add(event);
+    }
+
+    @Override
+    public void removeEvent(Long userId, Long eventId) {
+        Optional <EventEntity> optionalevent = eventRespiratory.findById(eventId);
+        Optional<UserEntity> optionaluser = userRespiratory.findById(userId);
+        Set<EventEntity> eventsInUser = (optionaluser.get().getJoinedEvents());
+        EventEntity event = new EventEntity(optionalevent.get().getId(), optionalevent.get().getName(),optionalevent.get().getBodytext(),optionalevent.get().getStartTime(),optionalevent.get().getEndTime(),optionalevent.get().getAddress(),optionalevent.get().getUser());
+        eventsInUser.remove(event);
+    }
+
+
 }

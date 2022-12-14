@@ -86,6 +86,29 @@ public class EventServiceImpl implements EventService {
     public void deleteEvent(Long id) {
         eventRespiratory.deleteById(id);
     }
+
+    @Override
+    public void addUser(Long userId, Long eventId) {
+        Optional <EventEntity> event = eventRespiratory.findById(eventId);
+        Optional<UserEntity> optionaluser = userRespiratory.findById(userId);
+        Set<UserEntity> usersInEvent = (event.get().getJoined());
+        UserEntity user = new UserEntity(optionaluser.get().getId(), optionaluser.get().getName(),optionaluser.get().getPassword(),optionaluser.get().getGender(),optionaluser.get().getDateOfBirth(), optionaluser.get().getAddress());
+
+        usersInEvent.add(user);
+
+    }
+
+    @Override
+    public void removeUser(Long userId, Long eventId) {
+        Optional <EventEntity> event = eventRespiratory.findById(eventId);
+        Optional<UserEntity> optionaluser = userRespiratory.findById(userId);
+        Set<UserEntity> usersInEvent = (event.get().getJoined());
+        UserEntity user = new UserEntity(optionaluser.get().getId(), optionaluser.get().getName(),optionaluser.get().getPassword(),optionaluser.get().getGender(),optionaluser.get().getDateOfBirth(), optionaluser.get().getAddress());
+
+        usersInEvent.remove(user);
+
+    }
+
 }
 
 

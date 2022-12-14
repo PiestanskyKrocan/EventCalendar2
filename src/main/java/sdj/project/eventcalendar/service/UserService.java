@@ -19,4 +19,9 @@ public interface UserService {
     UserEntity saveUser(UserEntity userEntity);
     UserEntity updateUser(UserEntity userEntity);
     void deleteUser(Long id);
+
+    void addEvent(Long userId, Long eventId);
+
+    void removeEvent(Long userId, Long eventId);
+
 }

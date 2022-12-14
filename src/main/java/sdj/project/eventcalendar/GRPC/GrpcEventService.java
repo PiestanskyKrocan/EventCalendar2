@@ -3,12 +3,11 @@ import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.data.jpa.repository.support.QuerydslJpaRepository;
 import org.springframework.stereotype.Service;
 import sdj.project.eventcalendar.Entity.EventEntity;
 import sdj.project.eventcalendar.Entity.UserEntity;
-import sdj.project.eventcalendar.protobuf.Event;
-import sdj.project.eventcalendar.protobuf.GRPCEventServiceGrpc;
-import sdj.project.eventcalendar.protobuf.User;
+import sdj.project.eventcalendar.protobuf.*;
 import sdj.project.eventcalendar.service.EventService;
 import sdj.project.eventcalendar.service.UserService;
 
@@ -147,6 +146,30 @@ public class GrpcEventService extends GRPCEventServiceGrpc.GRPCEventServiceImplB
                     .build();
             responseObserver.onNext(useresponse);
         }
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void rPCAddUserToEvent(JoinedEvents request, StreamObserver<Empty> responseObserver) {
+        eventService.addUser(request.getUserId(),request.getEventId());
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void rPCRemoveUserFromEvent(JoinedEvents request, StreamObserver<Empty> responseObserver) {
+        eventService.removeUser(request.getUserId(),request.getEventId());
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void rPCAddEventToUser(JoinedEvents request, StreamObserver<Empty> responseObserver) {
+        userService.addEvent(request.getUserId(),request.getEventId());
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void rPCRemoveEventFromUser(JoinedEvents request, StreamObserver<Empty> responseObserver) {
+        userService.removeEvent(request.getUserId(),request.getEventId());
         responseObserver.onCompleted();
     }
 

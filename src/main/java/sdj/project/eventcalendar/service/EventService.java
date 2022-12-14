@@ -17,4 +17,7 @@ public interface EventService {
     EventEntity saveEvent(EventEntity eventEntity);
     EventEntity updateEvent(EventEntity eventEntity);
     void deleteEvent(Long id);
+    void addUser(Long userId, Long eventId);
+
+    void removeUser(Long userId, Long eventId);
 }

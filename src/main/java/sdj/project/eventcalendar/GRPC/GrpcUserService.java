@@ -87,12 +87,14 @@ public class GrpcUserService extends GRPCUserServiceGrpc.GRPCUserServiceImplBase
         super.rPCsaveUser(request, responseObserver);
         user = new UserEntity(request.getUserId(),request.getName(), request.getPassword(),request.getGender(), Timestamp.valueOf(request.getDateOfBirth()),request.getAddress());
         userService.saveUser(user);
+        responseObserver.onCompleted();
     }
 
     @Override
     public void rPCupdateUser(User request, StreamObserver<User> responseObserver) {
         user = new UserEntity(request.getUserId(),request.getName(), request.getPassword(),request.getGender(), Timestamp.valueOf(request.getDateOfBirth()),request.getAddress());
         userService.updateUser(user);
+        responseObserver.onCompleted();
 
 
     }
@@ -101,5 +103,6 @@ public class GrpcUserService extends GRPCUserServiceGrpc.GRPCUserServiceImplBase
     public void rPCdeleteUser(User request, StreamObserver<User> responseObserver) {
         user = new UserEntity(request.getUserId(),request.getName(), request.getPassword(),request.getGender(), Timestamp.valueOf(request.getDateOfBirth()),request.getAddress());
         userService.deleteUser(user.getId());
+        responseObserver.onCompleted();
     }
 }

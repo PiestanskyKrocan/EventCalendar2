@@ -138,35 +138,128 @@ public final class GRPCEventServiceGrpc {
     return getRPCGetListOfEventsMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User,
-      sdj.project.eventcalendar.protobuf.User> getRPCGetListOfAllUsersMethod;
+  private static volatile io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.JoinedEvents,
+      sdj.project.eventcalendar.protobuf.Empty> getRPCAddUserToEventMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "RPCGetListOfAllUsers",
-      requestType = sdj.project.eventcalendar.protobuf.User.class,
-      responseType = sdj.project.eventcalendar.protobuf.User.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User,
-      sdj.project.eventcalendar.protobuf.User> getRPCGetListOfAllUsersMethod() {
-    io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.User, sdj.project.eventcalendar.protobuf.User> getRPCGetListOfAllUsersMethod;
-    if ((getRPCGetListOfAllUsersMethod = GRPCEventServiceGrpc.getRPCGetListOfAllUsersMethod) == null) {
+      fullMethodName = SERVICE_NAME + '/' + "RPCAddUserToEvent",
+      requestType = sdj.project.eventcalendar.protobuf.JoinedEvents.class,
+      responseType = sdj.project.eventcalendar.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.JoinedEvents,
+      sdj.project.eventcalendar.protobuf.Empty> getRPCAddUserToEventMethod() {
+    io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.JoinedEvents, sdj.project.eventcalendar.protobuf.Empty> getRPCAddUserToEventMethod;
+    if ((getRPCAddUserToEventMethod = GRPCEventServiceGrpc.getRPCAddUserToEventMethod) == null) {
       synchronized (GRPCEventServiceGrpc.class) {
-        if ((getRPCGetListOfAllUsersMethod = GRPCEventServiceGrpc.getRPCGetListOfAllUsersMethod) == null) {
-          GRPCEventServiceGrpc.getRPCGetListOfAllUsersMethod = getRPCGetListOfAllUsersMethod =
-              io.grpc.MethodDescriptor.<sdj.project.eventcalendar.protobuf.User, sdj.project.eventcalendar.protobuf.User>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RPCGetListOfAllUsers"))
+        if ((getRPCAddUserToEventMethod = GRPCEventServiceGrpc.getRPCAddUserToEventMethod) == null) {
+          GRPCEventServiceGrpc.getRPCAddUserToEventMethod = getRPCAddUserToEventMethod =
+              io.grpc.MethodDescriptor.<sdj.project.eventcalendar.protobuf.JoinedEvents, sdj.project.eventcalendar.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RPCAddUserToEvent"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  sdj.project.eventcalendar.protobuf.User.getDefaultInstance()))
+                  sdj.project.eventcalendar.protobuf.JoinedEvents.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  sdj.project.eventcalendar.protobuf.User.getDefaultInstance()))
-              .setSchemaDescriptor(new GRPCEventServiceMethodDescriptorSupplier("RPCGetListOfAllUsers"))
+                  sdj.project.eventcalendar.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new GRPCEventServiceMethodDescriptorSupplier("RPCAddUserToEvent"))
               .build();
         }
       }
     }
-    return getRPCGetListOfAllUsersMethod;
+    return getRPCAddUserToEventMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.JoinedEvents,
+      sdj.project.eventcalendar.protobuf.Empty> getRPCRemoveUserFromEventMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RPCRemoveUserFromEvent",
+      requestType = sdj.project.eventcalendar.protobuf.JoinedEvents.class,
+      responseType = sdj.project.eventcalendar.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.JoinedEvents,
+      sdj.project.eventcalendar.protobuf.Empty> getRPCRemoveUserFromEventMethod() {
+    io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.JoinedEvents, sdj.project.eventcalendar.protobuf.Empty> getRPCRemoveUserFromEventMethod;
+    if ((getRPCRemoveUserFromEventMethod = GRPCEventServiceGrpc.getRPCRemoveUserFromEventMethod) == null) {
+      synchronized (GRPCEventServiceGrpc.class) {
+        if ((getRPCRemoveUserFromEventMethod = GRPCEventServiceGrpc.getRPCRemoveUserFromEventMethod) == null) {
+          GRPCEventServiceGrpc.getRPCRemoveUserFromEventMethod = getRPCRemoveUserFromEventMethod =
+              io.grpc.MethodDescriptor.<sdj.project.eventcalendar.protobuf.JoinedEvents, sdj.project.eventcalendar.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RPCRemoveUserFromEvent"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sdj.project.eventcalendar.protobuf.JoinedEvents.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sdj.project.eventcalendar.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new GRPCEventServiceMethodDescriptorSupplier("RPCRemoveUserFromEvent"))
+              .build();
+        }
+      }
+    }
+    return getRPCRemoveUserFromEventMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.JoinedEvents,
+      sdj.project.eventcalendar.protobuf.Empty> getRPCAddEventToUserMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RPCAddEventToUser",
+      requestType = sdj.project.eventcalendar.protobuf.JoinedEvents.class,
+      responseType = sdj.project.eventcalendar.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.JoinedEvents,
+      sdj.project.eventcalendar.protobuf.Empty> getRPCAddEventToUserMethod() {
+    io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.JoinedEvents, sdj.project.eventcalendar.protobuf.Empty> getRPCAddEventToUserMethod;
+    if ((getRPCAddEventToUserMethod = GRPCEventServiceGrpc.getRPCAddEventToUserMethod) == null) {
+      synchronized (GRPCEventServiceGrpc.class) {
+        if ((getRPCAddEventToUserMethod = GRPCEventServiceGrpc.getRPCAddEventToUserMethod) == null) {
+          GRPCEventServiceGrpc.getRPCAddEventToUserMethod = getRPCAddEventToUserMethod =
+              io.grpc.MethodDescriptor.<sdj.project.eventcalendar.protobuf.JoinedEvents, sdj.project.eventcalendar.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RPCAddEventToUser"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sdj.project.eventcalendar.protobuf.JoinedEvents.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sdj.project.eventcalendar.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new GRPCEventServiceMethodDescriptorSupplier("RPCAddEventToUser"))
+              .build();
+        }
+      }
+    }
+    return getRPCAddEventToUserMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.JoinedEvents,
+      sdj.project.eventcalendar.protobuf.Empty> getRPCRemoveEventFromUserMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RPCRemoveEventFromUser",
+      requestType = sdj.project.eventcalendar.protobuf.JoinedEvents.class,
+      responseType = sdj.project.eventcalendar.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.JoinedEvents,
+      sdj.project.eventcalendar.protobuf.Empty> getRPCRemoveEventFromUserMethod() {
+    io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.JoinedEvents, sdj.project.eventcalendar.protobuf.Empty> getRPCRemoveEventFromUserMethod;
+    if ((getRPCRemoveEventFromUserMethod = GRPCEventServiceGrpc.getRPCRemoveEventFromUserMethod) == null) {
+      synchronized (GRPCEventServiceGrpc.class) {
+        if ((getRPCRemoveEventFromUserMethod = GRPCEventServiceGrpc.getRPCRemoveEventFromUserMethod) == null) {
+          GRPCEventServiceGrpc.getRPCRemoveEventFromUserMethod = getRPCRemoveEventFromUserMethod =
+              io.grpc.MethodDescriptor.<sdj.project.eventcalendar.protobuf.JoinedEvents, sdj.project.eventcalendar.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RPCRemoveEventFromUser"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sdj.project.eventcalendar.protobuf.JoinedEvents.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sdj.project.eventcalendar.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new GRPCEventServiceMethodDescriptorSupplier("RPCRemoveEventFromUser"))
+              .build();
+        }
+      }
+    }
+    return getRPCRemoveEventFromUserMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<sdj.project.eventcalendar.protobuf.Event,
@@ -371,9 +464,30 @@ public final class GRPCEventServiceGrpc {
 
     /**
      */
-    public void rPCGetListOfAllUsers(sdj.project.eventcalendar.protobuf.User request,
-        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.User> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRPCGetListOfAllUsersMethod(), responseObserver);
+    public void rPCAddUserToEvent(sdj.project.eventcalendar.protobuf.JoinedEvents request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRPCAddUserToEventMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void rPCRemoveUserFromEvent(sdj.project.eventcalendar.protobuf.JoinedEvents request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRPCRemoveUserFromEventMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void rPCAddEventToUser(sdj.project.eventcalendar.protobuf.JoinedEvents request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRPCAddEventToUserMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void rPCRemoveEventFromUser(sdj.project.eventcalendar.protobuf.JoinedEvents request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRPCRemoveEventFromUserMethod(), responseObserver);
     }
 
     /**
@@ -435,12 +549,33 @@ public final class GRPCEventServiceGrpc {
                 sdj.project.eventcalendar.protobuf.Event>(
                   this, METHODID_RPCGET_LIST_OF_EVENTS)))
           .addMethod(
-            getRPCGetListOfAllUsersMethod(),
-            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+            getRPCAddUserToEventMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
-                sdj.project.eventcalendar.protobuf.User,
-                sdj.project.eventcalendar.protobuf.User>(
-                  this, METHODID_RPCGET_LIST_OF_ALL_USERS)))
+                sdj.project.eventcalendar.protobuf.JoinedEvents,
+                sdj.project.eventcalendar.protobuf.Empty>(
+                  this, METHODID_RPCADD_USER_TO_EVENT)))
+          .addMethod(
+            getRPCRemoveUserFromEventMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                sdj.project.eventcalendar.protobuf.JoinedEvents,
+                sdj.project.eventcalendar.protobuf.Empty>(
+                  this, METHODID_RPCREMOVE_USER_FROM_EVENT)))
+          .addMethod(
+            getRPCAddEventToUserMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                sdj.project.eventcalendar.protobuf.JoinedEvents,
+                sdj.project.eventcalendar.protobuf.Empty>(
+                  this, METHODID_RPCADD_EVENT_TO_USER)))
+          .addMethod(
+            getRPCRemoveEventFromUserMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                sdj.project.eventcalendar.protobuf.JoinedEvents,
+                sdj.project.eventcalendar.protobuf.Empty>(
+                  this, METHODID_RPCREMOVE_EVENT_FROM_USER)))
           .addMethod(
             getRPCfindEventByIdMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -521,10 +656,34 @@ public final class GRPCEventServiceGrpc {
 
     /**
      */
-    public void rPCGetListOfAllUsers(sdj.project.eventcalendar.protobuf.User request,
-        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.User> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
-          getChannel().newCall(getRPCGetListOfAllUsersMethod(), getCallOptions()), request, responseObserver);
+    public void rPCAddUserToEvent(sdj.project.eventcalendar.protobuf.JoinedEvents request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getRPCAddUserToEventMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void rPCRemoveUserFromEvent(sdj.project.eventcalendar.protobuf.JoinedEvents request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getRPCRemoveUserFromEventMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void rPCAddEventToUser(sdj.project.eventcalendar.protobuf.JoinedEvents request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getRPCAddEventToUserMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void rPCRemoveEventFromUser(sdj.project.eventcalendar.protobuf.JoinedEvents request,
+        io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getRPCRemoveEventFromUserMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -608,10 +767,30 @@ public final class GRPCEventServiceGrpc {
 
     /**
      */
-    public java.util.Iterator<sdj.project.eventcalendar.protobuf.User> rPCGetListOfAllUsers(
-        sdj.project.eventcalendar.protobuf.User request) {
-      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
-          getChannel(), getRPCGetListOfAllUsersMethod(), getCallOptions(), request);
+    public sdj.project.eventcalendar.protobuf.Empty rPCAddUserToEvent(sdj.project.eventcalendar.protobuf.JoinedEvents request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getRPCAddUserToEventMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public sdj.project.eventcalendar.protobuf.Empty rPCRemoveUserFromEvent(sdj.project.eventcalendar.protobuf.JoinedEvents request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getRPCRemoveUserFromEventMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public sdj.project.eventcalendar.protobuf.Empty rPCAddEventToUser(sdj.project.eventcalendar.protobuf.JoinedEvents request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getRPCAddEventToUserMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public sdj.project.eventcalendar.protobuf.Empty rPCRemoveEventFromUser(sdj.project.eventcalendar.protobuf.JoinedEvents request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getRPCRemoveEventFromUserMethod(), getCallOptions(), request);
     }
 
     /**
@@ -659,6 +838,38 @@ public final class GRPCEventServiceGrpc {
 
     /**
      */
+    public com.google.common.util.concurrent.ListenableFuture<sdj.project.eventcalendar.protobuf.Empty> rPCAddUserToEvent(
+        sdj.project.eventcalendar.protobuf.JoinedEvents request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getRPCAddUserToEventMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<sdj.project.eventcalendar.protobuf.Empty> rPCRemoveUserFromEvent(
+        sdj.project.eventcalendar.protobuf.JoinedEvents request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getRPCRemoveUserFromEventMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<sdj.project.eventcalendar.protobuf.Empty> rPCAddEventToUser(
+        sdj.project.eventcalendar.protobuf.JoinedEvents request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getRPCAddEventToUserMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<sdj.project.eventcalendar.protobuf.Empty> rPCRemoveEventFromUser(
+        sdj.project.eventcalendar.protobuf.JoinedEvents request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getRPCRemoveEventFromUserMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
     public com.google.common.util.concurrent.ListenableFuture<sdj.project.eventcalendar.protobuf.Event> rPCfindEventById(
         sdj.project.eventcalendar.protobuf.Event request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
@@ -694,11 +905,14 @@ public final class GRPCEventServiceGrpc {
   private static final int METHODID_RPCGET_LISTOF_CREATED_EVENTS = 1;
   private static final int METHODID_RPCGET_LIST_OF_JOINED_EVENTS = 2;
   private static final int METHODID_RPCGET_LIST_OF_EVENTS = 3;
-  private static final int METHODID_RPCGET_LIST_OF_ALL_USERS = 4;
-  private static final int METHODID_RPCFIND_EVENT_BY_ID = 5;
-  private static final int METHODID_RPCSAVE_EVENT = 6;
-  private static final int METHODID_RPCUPDATE_EVENT = 7;
-  private static final int METHODID_RPCDELETE_EVENT = 8;
+  private static final int METHODID_RPCADD_USER_TO_EVENT = 4;
+  private static final int METHODID_RPCREMOVE_USER_FROM_EVENT = 5;
+  private static final int METHODID_RPCADD_EVENT_TO_USER = 6;
+  private static final int METHODID_RPCREMOVE_EVENT_FROM_USER = 7;
+  private static final int METHODID_RPCFIND_EVENT_BY_ID = 8;
+  private static final int METHODID_RPCSAVE_EVENT = 9;
+  private static final int METHODID_RPCUPDATE_EVENT = 10;
+  private static final int METHODID_RPCDELETE_EVENT = 11;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -733,9 +947,21 @@ public final class GRPCEventServiceGrpc {
           serviceImpl.rPCGetListOfEvents((sdj.project.eventcalendar.protobuf.User) request,
               (io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Event>) responseObserver);
           break;
-        case METHODID_RPCGET_LIST_OF_ALL_USERS:
-          serviceImpl.rPCGetListOfAllUsers((sdj.project.eventcalendar.protobuf.User) request,
-              (io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.User>) responseObserver);
+        case METHODID_RPCADD_USER_TO_EVENT:
+          serviceImpl.rPCAddUserToEvent((sdj.project.eventcalendar.protobuf.JoinedEvents) request,
+              (io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_RPCREMOVE_USER_FROM_EVENT:
+          serviceImpl.rPCRemoveUserFromEvent((sdj.project.eventcalendar.protobuf.JoinedEvents) request,
+              (io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_RPCADD_EVENT_TO_USER:
+          serviceImpl.rPCAddEventToUser((sdj.project.eventcalendar.protobuf.JoinedEvents) request,
+              (io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_RPCREMOVE_EVENT_FROM_USER:
+          serviceImpl.rPCRemoveEventFromUser((sdj.project.eventcalendar.protobuf.JoinedEvents) request,
+              (io.grpc.stub.StreamObserver<sdj.project.eventcalendar.protobuf.Empty>) responseObserver);
           break;
         case METHODID_RPCFIND_EVENT_BY_ID:
           serviceImpl.rPCfindEventById((sdj.project.eventcalendar.protobuf.Event) request,
@@ -818,7 +1044,10 @@ public final class GRPCEventServiceGrpc {
               .addMethod(getRPCGetListofCreatedEventsMethod())
               .addMethod(getRPCGetListOfJoinedEventsMethod())
               .addMethod(getRPCGetListOfEventsMethod())
-              .addMethod(getRPCGetListOfAllUsersMethod())
+              .addMethod(getRPCAddUserToEventMethod())
+              .addMethod(getRPCRemoveUserFromEventMethod())
+              .addMethod(getRPCAddEventToUserMethod())
+              .addMethod(getRPCRemoveEventFromUserMethod())
               .addMethod(getRPCfindEventByIdMethod())
               .addMethod(getRPCsaveEventMethod())
               .addMethod(getRPCupdateEventMethod())

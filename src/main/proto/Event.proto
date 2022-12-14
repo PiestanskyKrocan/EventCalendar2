@@ -12,6 +12,18 @@ message Event {
   string address = 6;
   User creator = 7;
 }
+
+message JoinedEvents{
+  int64 user_id=1;
+  int64 event_id=2;
+}
+
+message Empty {
+
+}
+
+
+
 service GRPCEventService {
 
   rpc RPCGetListOfUsersinEvent(Event) returns (stream User) {}
@@ -22,7 +34,14 @@ service GRPCEventService {
 
   rpc RPCGetListOfEvents(User) returns (stream Event){}
 
-  rpc RPCGetListOfAllUsers(User) returns (stream User){}
+  rpc RPCAddUserToEvent(JoinedEvents) returns (Empty){}
+
+  rpc RPCRemoveUserFromEvent(JoinedEvents) returns (Empty){}
+
+  rpc RPCAddEventToUser(JoinedEvents) returns (Empty){}
+
+  rpc RPCRemoveEventFromUser(JoinedEvents) returns (Empty){}
+
 
 
   rpc RPCfindEventById(Event) returns (Event);
